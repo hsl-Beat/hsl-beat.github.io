@@ -726,7 +726,7 @@
       border: 2px solid #333333;
       margin: 20px;
       padding: 20px;
-      background: #333333;
+      background: #ffffff;
     }
     #标题{
       font-size: 1.9rem;
