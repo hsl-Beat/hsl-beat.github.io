@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>hsl-beat的blog</title><meta name="author" content="hsl-beat"><meta name="copyright" content="hsl-beat"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta property="og:type" content="website">
+<meta property="og:title" content="hsl-beat的blog">
+<meta property="og:url" content="http://hsl-beat.github.io/page/3/index.html">
+<meta property="og:site_name" content="hsl-beat的blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://hsl-beat.github.io/img/beat-icon.png">
+<meta property="article:author" content="hsl-beat">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hsl-beat.github.io/img/beat-icon.png"><link rel="shortcut icon" href="/img/beat-icon.png"><link rel="canonical" href="http://hsl-beat.github.io/page/3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//busuanzi.ibruce.info"><meta><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'hsl-beat的blog',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/beat-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fa fa-commenting"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 实用链接</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-paper-plane"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/answerbook/"><i class="fa-fw fa fa-book"></i><span> 答案之书</span></a></li><li><a class="site-page child" href="/zhanbu/"><i class="fa-fw fa fa-exclamation"></i><span> 占卜但是无限次</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-info"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/pg.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">hsl-beat的blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fa fa-commenting"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 实用链接</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-paper-plane"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/answerbook/"><i class="fa-fw fa fa-book"></i><span> 答案之书</span></a></li><li><a class="site-page child" href="/zhanbu/"><i class="fa-fw fa fa-exclamation"></i><span> 占卜但是无限次</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-info"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">hsl-beat的blog</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/11/Atcoder%20ABC392%E6%B8%B8%E8%AE%B0/" title="Atcoder ABC392游记">Atcoder ABC392游记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-02-11T13:50:58.000Z" title="Created 2025-02-11 21:50:58">2025-02-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/">赛后总结</a></span></div><div class="content"> Atcoder ABC392游记（A~E） 比赛链接 注：这次比赛因为有事情所以没有打，都是赛后代码，特此说明。 holy shit这次比赛这么简单我怎么没打，qwq  A.Shuffled Equation  题目描述 给你一个整数序列A=(A1,A2,A3)A=(A_1,A_2,A_3)A=(A1​,A2​,A3​)。 让B=(B1,B2,B3)B=(B_1,B_2,B_3)B=(B1​,B2​,B3​)为A的任意一个排列。 问你有没有可能B1∗B2=B3B_1*B_2=B_3B1​∗B2​=B3​  思路 你跑一遍全排列也不是不行，不过我们简单一点可以直接从小到大排序判断就欧克了。  代码 12345678910#include&lt;bits/stdc++.h&gt;using namespace std;int main(){    vector&lt;int&gt; a(3);    cin &gt;&gt; a[0] &gt;&gt; a[1] &gt;&gt; a[2];    sort(a.begin(), a.end());    cout...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/02/01/Atcoder%20ABC391%E6%B8%B8%E8%AE%B0/" title="Atcoder ABC391游记">Atcoder ABC391游记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-02-01T13:52:21.000Z" title="Created 2025-02-01 21:52:21">2025-02-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/">赛后总结</a></span></div><div class="content"> Atcoder ABC390个人游记（A~C,E）  比赛链接 妙啊，比taqingqiu都要苗妙妙 这次比赛是不是有个印度选手用ai三分钟一道f被atcoder封了（ 乐子重开吧 话说你们是不是也不能用deepl了  A - Lucky Direction  问题陈述 您将得到一个字符串 DDD ，表示八个方向（北、东、西、南、东北、西北、东南、西南）中的一个。方向和它们的表示字符串之间的对应关系如下。 -北：‘ N ’ -东：“E” -西方：“W” -南方：“S” -东北：“NE” -西北：“NW” -东南：“SE” 西南：“SW” 打印与 DDD 表示的方向相反的字符串。问题陈述 您将得到一个字符串 DDD ，表示八个方向（北、东、西、南、东北、西北、东南、西南）中的一个。方向和它们的表示字符串之间的对应关系如下。 -北：‘ N ’ -东：“E” -西方：“W” -南方：“S” -东北：“NE” -西北：“NW” -东南：“SE” 西南：“SW” 打印与 DDD 表示的方向相反的字符串。  思路 EASY ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/01/23/%E6%83%B3%E8%A6%81%E6%8B%A5%E6%9C%89%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84blog%E5%90%97%EF%BC%9F/" title="想要拥有你自己的blog吗？">想要拥有你自己的blog吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-01-23T03:02:44.000Z" title="Created 2025-01-23 11:02:44">2025-01-23</time></span></div><div class="content"> 前言 我们在oi这条路上，总想把发生的事情记录下来。一场比赛甚至是一道有营养的题，都能给你无限的思考。这时候最好的方法当然是写下来，如果你还想让更多人看见，那写blog就是你的最优选择。 很多人认为免费地写blog只能部署在一些平台上，想在自己的域名上又怕花钱。hexo是一个基于node.js的免费、快速、多功能的个人blog模板框架，支持自定义主题和各种扩展插件，markdown和katex也都支持，还可以自动部署到github仓库。github可以把仓库里的内容形成静态网站而且可以自定义域名，全部免费！这种良心的东西，此时不用，更待何时？！  环境配置 操作系统：windows 10/11 必备内容：  nodejs 10.13以上版本且自带npm git 2.47以上版本 已经注册了的github账号  这里配置可以参考网上教程，不再过多赘述。  配置hexo 因为hexo源在国外，速度会非常慢，所以我们要切换国内镜像源再下载，打开cmd并输入这两行代码： 12npm install -g cnpm...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/01/20/hsl-beat's-secret/" title="hsl-beat's secret">hsl-beat's secret</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-01-20T11:21:02.000Z" title="Created 2025-01-20 19:21:02">2025-01-20</time></span></div><div class="content">   9dabb3870e1e1d62e2cfdc2d3dc2aa93ead7ec87eacc5371fc397332bcdee5059c7510127967807d024a5f58a209a99bf9d71461673352ec79503cd6622c1a5592b3577e3824535fa4fa771589c37e71                               你这么想看啊                 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/01/15/Codeforces-837D/" title="Codeforces-837D">Codeforces-837D</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-01-15T13:22:30.000Z" title="Created 2025-01-15 21:22:30">2025-01-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="content"> Codeforces-837D Round Subset 题解  题目链接  题面 我们把10进制下数末尾0的个数称为这个数的圆度。比如100010的圆度就是1。 给你一个长度为nnn的正整数数组，你要选择恰好kkk个数的子集，使这些数的乘积的圆度尽可能大。 1≤n≤2001 \leq n \leq 2001≤n≤200 1≤k≤n1 \leq k \leq n1≤k≤n 1≤ai≤10181 \leq a_i \leq 10^{18}1≤ai​≤1018 不开long long见祖宗！别忘了！ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/01/14/oi%E8%BF%B7%E6%83%91%E8%A1%8C%E4%B8%BA%E5%A4%A7%E8%B5%8F-1/" title="oi迷惑行为大赏-1">oi迷惑行为大赏-1</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2025-01-14T13:20:56.000Z" title="Created 2025-01-14 21:20:56">2025-01-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%97%B2%E8%AF%9D/">闲话</a></span></div><div class="content">免责声明：本文章仅供娱乐！并非代表个人观点！请勿自作多情！  行为1：freopen写挂  killer: CE (compile easily） 123456freopen("joker,in","r",stdin);freopen(joker.in,r,stdin);freopen("joker.in","w",stdin);fre open("joker.in","r","stdin");freopen("joker.in","r",stdin);freopen("joker.in","w",stdin);  行为2：锟斤拷  killer：WA（wonderful answer） 1cout&lt;&lt;"鎴戣涓猴紝 瑕佹兂娓呮锛屽ソ濂藉涔狅紝鍒板簳鏄竴绉嶆€";  行为3：尝试贿赂  killer：CCF 123456789101112131415161718192021222324puts ("I can't solve this problem. :(");puts ("But I think it uses an algorithm called mo...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/beat-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info-name">hsl-beat</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/816987"><i class="fa fa-address-book"></i><span>找到我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">不要ddos我的网站了谢谢</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/03/Atcoder%20ABC404%E6%B8%B8%E8%AE%B0/" title="Atcoder ABC404游记">Atcoder ABC404游记</a><time datetime="2025-05-03T15:36:32.000Z" title="Created 2025-05-03 23:36:32">2025-05-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/03/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%E4%BD%86%E6%98%AF%E5%8F%AA%E6%9C%89%E6%9D%BF%E5%AD%90%E5%9B%A0%E4%B8%BA%E4%B8%BA%E4%BA%86%E5%BA%94%E4%BB%98%E4%BB%8A%E6%99%9A%E7%9A%84G%E9%A2%98%E6%89%80%E4%BB%A5%E5%8C%86%E5%8C%86%E5%AD%A6%E7%9A%84/" title="差分约束算法笔记但是只有板子因为为了应付今晚的G题所以匆匆学的">差分约束算法笔记但是只有板子因为为了应付今晚的G题所以匆匆学的</a><time datetime="2025-05-02T16:07:21.000Z" title="Created 2025-05-03 00:07:21">2025-05-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/27/Atcoder%20ABC403%E6%B8%B8%E8%AE%B0/" title="Atcoder ABC403游记">Atcoder ABC403游记</a><time datetime="2025-04-27T13:49:42.000Z" title="Created 2025-04-27 21:49:42">2025-04-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/19/Atcoder%20ABC402%E6%B8%B8%E8%AE%B0/" title="Atcoder ABC402游记">Atcoder ABC402游记</a><time datetime="2025-04-19T13:50:09.000Z" title="Created 2025-04-19 21:50:09">2025-04-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/12/%E7%AC%AC%E4%B8%80%E6%AC%A1JC%E5%88%AB%E4%BA%BA%E7%9A%84%E7%BB%8F%E5%8E%86/" title="第一次JC别人的经历">第一次JC别人的经历</a><time datetime="2025-04-12T09:00:00.000Z" title="Created 2025-04-12 17:00:00">2025-04-12</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 1.1em; color: #999">数学</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 1.5em; color: #99a9bf">编程</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 1.43em; color: #99a6b9">题解</a> <a href="/tags/%E5%A8%B1%E4%B9%90/" style="font-size: 1.23em; color: #999ea6">娱乐</a> <a href="/tags/Atcoder/" style="font-size: 1.37em; color: #99a4b2">Atcoder</a> <a href="/tags/Codeforces/" style="font-size: 1.1em; color: #999">Codeforces</a> <a href="/tags/%E5%8A%A0%E5%AF%86/" style="font-size: 1.1em; color: #999">加密</a> <a href="/tags/%E9%97%B2%E8%AF%9D/" style="font-size: 1.17em; color: #999c9f">闲话</a> <a href="/tags/%E8%B5%9B%E5%90%8E%E6%80%BB%E7%BB%93/" style="font-size: 1.37em; color: #99a4b2">赛后总结</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 1.3em; color: #99a1ac">笔记</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/05/">
+            <span class="card-archive-list-date">
+              五月 2025
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/04/">
+            <span class="card-archive-list-date">
+              四月 2025
+            </span>
+            <span class="card-archive-list-count">7</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/03/">
+            <span class="card-archive-list-date">
+              三月 2025
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/02/">
+            <span class="card-archive-list-date">
+              二月 2025
+            </span>
+            <span class="card-archive-list-count">7</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/01/">
+            <span class="card-archive-list-date">
+              一月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">26</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastpushdate="2025-05-03T17:03:41.511Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">©20125 - 2025 By hsl-beat</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 380,
+      typeSpeed: 60,
+      loop: true,
+      backSpeed: 20,
+    }, null))
+  },
+  run: subtitleType => {
+    if (false) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  if (false) {
+    typedJSFn.init(["赤团开时斜飞去，最不安神晴又复雨。"])
+  } else {
+    document.getElementById("subtitle").textContent = "赤团开时斜飞去，最不安神晴又复雨。"
+  }
+}
+typedJSFn.run(subtitleType)</script></div><script async="" data-pjax="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
