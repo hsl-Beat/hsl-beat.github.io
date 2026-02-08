@@ -1,0 +1,257 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>题解：AT_abc443_f [ABC443F] Non-Increasing Number | hsl-beat的blog</title><meta name="author" content="hsl-beat"><meta name="copyright" content="hsl-beat"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="这题好像根本不难。 假如我们对于一个数确定了它模 nnn 的余数 iii，和它的最后一位 jjj，那么这个数的长度一定越短越好。 所以我们可以考虑记录每个状态 (i,j)(i, j)(i,j) 可以到达的最短长度，一个一个数字的往后面拼，假如我们拼数字 kkk，那么 ((i×10+k)%n,k)((i \times 10 + k) \% n, k)((i×10+k)%n,k) 这个状态的步数就是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="题解：AT_abc443_f [ABC443F] Non-Increasing Number">
+<meta property="og:url" content="http://hsl-beat.github.io/2026/02/01/%E9%A2%98%E8%A7%A3%EF%BC%9AAT_abc443_f%20[ABC443F]%20Non-Increasing%20Number/index.html">
+<meta property="og:site_name" content="hsl-beat的blog">
+<meta property="og:description" content="这题好像根本不难。 假如我们对于一个数确定了它模 nnn 的余数 iii，和它的最后一位 jjj，那么这个数的长度一定越短越好。 所以我们可以考虑记录每个状态 (i,j)(i, j)(i,j) 可以到达的最短长度，一个一个数字的往后面拼，假如我们拼数字 kkk，那么 ((i×10+k)%n,k)((i \times 10 + k) \% n, k)((i×10+k)%n,k) 这个状态的步数就是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://hsl-beat.github.io/img/beat-icon.png">
+<meta property="article:published_time" content="2026-02-01T03:54:14.000Z">
+<meta property="article:modified_time" content="2026-02-01T03:54:32.003Z">
+<meta property="article:author" content="hsl-beat">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="题解">
+<meta property="article:tag" content="Atcoder">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hsl-beat.github.io/img/beat-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "题解：AT_abc443_f [ABC443F] Non-Increasing Number",
+  "url": "http://hsl-beat.github.io/2026/02/01/%E9%A2%98%E8%A7%A3%EF%BC%9AAT_abc443_f%20[ABC443F]%20Non-Increasing%20Number/",
+  "image": "http://hsl-beat.github.io/img/beat-icon.png",
+  "datePublished": "2026-02-01T03:54:14.000Z",
+  "dateModified": "2026-02-01T03:54:32.003Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "hsl-beat",
+      "url": "http://hsl-beat.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/beat-icon.png"><link rel="canonical" href="http://hsl-beat.github.io/2026/02/01/%E9%A2%98%E8%A7%A3%EF%BC%9AAT_abc443_f%20[ABC443F]%20Non-Increasing%20Number/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//busuanzi.ibruce.info"><meta><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '题解：AT_abc443_f [ABC443F] Non-Increasing Number',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/beat-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">57</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fa fa-commenting"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 实用链接</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-paper-plane"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/answerbook/"><i class="fa-fw fa fa-book"></i><span> 答案之书</span></a></li><li><a class="site-page child" href="/zhanbu/"><i class="fa-fw fa fa-exclamation"></i><span> 占卜但是无限次</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-info"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/pg2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">hsl-beat的blog</span></a><a class="nav-page-title" href="/"><span class="site-name">题解：AT_abc443_f [ABC443F] Non-Increasing Number</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fa fa-commenting"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 实用链接</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-paper-plane"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/answerbook/"><i class="fa-fw fa fa-book"></i><span> 答案之书</span></a></li><li><a class="site-page child" href="/zhanbu/"><i class="fa-fw fa fa-exclamation"></i><span> 占卜但是无限次</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-info"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">题解：AT_abc443_f [ABC443F] Non-Increasing Number</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-02-01T03:54:14.000Z" title="Created 2026-02-01 11:54:14">2026-02-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-01T03:54:32.003Z" title="Updated 2026-02-01 11:54:32">2026-02-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>这题好像根本不难。</p>
+<p>假如我们对于一个数确定了它模 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 的余数 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span>，和它的最后一位 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span></span></span></span>，那么这个数的长度一定越短越好。</p>
+<p>所以我们可以考虑记录每个状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i, j)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">)</span></span></span></span> 可以到达的最短长度，一个一个数字的往后面拼，假如我们拼数字 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>，那么 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>i</mi><mo>×</mo><mn>10</mn><mo>+</mo><mi>k</mi><mo stretchy="false">)</mo><mi mathvariant="normal">%</mi><mi>n</mi><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">((i \times 10 + k) \% n, k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mord">%</span><span class="mord mathnormal">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span> 这个状态的步数就是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i, j)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">)</span></span></span></span> 的步数加 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。</p>
+<p>那直接 BFS 这题就做完了，因为每一次我们可以在扩展的时候拼尽量小的数，所以找到的第一个模 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 余数位 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的状态就是我们想要的答案，我们可以记录每一个状态的前一个状态，一个一个回溯回去就可以得到答案啦。</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="type">int</span> dist[<span class="number">3333333</span>][<span class="number">10</span>];</span><br><span class="line">pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; ls[<span class="number">3333333</span>][<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    queue&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; que;</span><br><span class="line">    que.<span class="built_in">push</span>({<span class="number">0</span>, <span class="number">0</span>});</span><br><span class="line">    <span class="keyword">while</span> (que.<span class="built_in">size</span>()) {</span><br><span class="line">        <span class="type">int</span> x = que.<span class="built_in">front</span>().first, y = que.<span class="built_in">front</span>().second;</span><br><span class="line">        <span class="keyword">if</span> (x == <span class="number">0</span> &amp;&amp; y) {</span><br><span class="line">            vector&lt;<span class="type">int</span>&gt; ans;</span><br><span class="line">            <span class="keyword">while</span> (<span class="number">1</span>) {</span><br><span class="line">                ans.<span class="built_in">push_back</span>(y);</span><br><span class="line">                <span class="keyword">if</span> (dist[x][y] == <span class="number">1</span>) {</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                }</span><br><span class="line">                <span class="keyword">auto</span> tp = ls[x][y];</span><br><span class="line">                x = tp.first;</span><br><span class="line">                y = tp.second;</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = ans.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) {</span><br><span class="line">                cout &lt;&lt; ans[i];</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        }</span><br><span class="line">        que.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="built_in">max</span>(<span class="number">1ll</span>, y); i &lt;= <span class="number">9</span>; i++) {</span><br><span class="line">            <span class="keyword">if</span> (dist[(x * <span class="number">10</span> + i) % n][i]) {</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            }</span><br><span class="line">            dist[(x * <span class="number">10</span> + i) % n][i] = dist[x][y] + <span class="number">1</span>;</span><br><span class="line">            que.<span class="built_in">push</span>({(x * <span class="number">10</span> + i) % n, i});</span><br><span class="line">            ls[(x * <span class="number">10</span> + i) % n][i] = {x, y};</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    cout &lt;&lt; <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://hsl-beat.github.io">hsl-beat</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://hsl-beat.github.io/2026/02/01/%E9%A2%98%E8%A7%A3%EF%BC%9AAT_abc443_f%20[ABC443F]%20Non-Increasing%20Number/">http://hsl-beat.github.io/2026/02/01/%E9%A2%98%E8%A7%A3%EF%BC%9AAT_abc443_f%20[ABC443F]%20Non-Increasing%20Number/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BC%96%E7%A8%8B/">编程</a><a class="post-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a><a class="post-meta__tags" href="/tags/Atcoder/">Atcoder</a></div><div class="post-share"><div class="social-share" data-image="/img/beat-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer=""></script></div></div><nav class="pagination-post" id="pagination"></nav><hr class="custom-hr"><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comments</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/beat-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info-name">hsl-beat</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">57</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/816987"><i class="fa fa-address-book"></i><span>找到我</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">太好了！如果你看到这句话说明这个博客浏览量又可以增加了！谢谢你！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/01/%E9%A2%98%E8%A7%A3%EF%BC%9AAT_abc443_f%20%5BABC443F%5D%20Non-Increasing%20Number/" title="题解：AT_abc443_f [ABC443F] Non-Increasing Number">题解：AT_abc443_f [ABC443F] Non-Increasing Number</a><time datetime="2026-02-01T03:54:14.000Z" title="Created 2026-02-01 11:54:14">2026-02-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/25/%E9%A2%98%E8%A7%A3%EF%BC%9AP14980%20%5BUSACO26JAN1%5D%20COW%20Traversals%20G/" title="题解：P14980 [USACO26JAN1] COW Traversals G">题解：P14980 [USACO26JAN1] COW Traversals G</a><time datetime="2026-01-25T05:50:23.000Z" title="Created 2026-01-25 13:50:23">2026-01-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/03/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86CRT%E7%AC%94%E8%AE%B0/" title="中国剩余定理CRT笔记">中国剩余定理CRT笔记</a><time datetime="2026-01-03T09:04:24.000Z" title="Created 2026-01-03 17:04:24">2026-01-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/22/%E9%A2%98%E8%A7%A3%EF%BC%9AAT_abc437_g%20%5BABC437G%5D%20Colorful%20Christmas%20Tree/" title="题解：AT_abc437_g [ABC437G] Colorful Christmas Tree">题解：AT_abc437_g [ABC437G] Colorful Christmas Tree</a><time datetime="2025-12-22T05:06:46.000Z" title="Created 2025-12-22 13:06:46">2025-12-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/22/%20%E9%A2%98%E8%A7%A3%EF%BC%9AAT_abc437_g%20%5BABC437G%5D%20Colorful%20Christmas%20Tree/" title="题解：AT_abc437_g [ABC437G] Colorful Christmas Tree">题解：AT_abc437_g [ABC437G] Colorful Christmas Tree</a><time datetime="2025-12-22T05:06:37.000Z" title="Created 2025-12-22 13:06:37">2025-12-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">©2012 - 2026 By hsl-beat</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="Scroll to Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'hsl-Beat/hsl-beat.github.io',
+      'data-repo-id': 'R_kgDONqHY-w',
+      'data-category-id': 'DIC_kwDONqHY-84CmBqV',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><script async="" data-pjax="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
